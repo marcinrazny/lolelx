@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <title>LOLEX</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    </head>
+
+<body>
+
+<div class="jumbotron text-center">
+    <h1>L . L . O . X prawdopodobnie najlepsze miejsce do sprzedawania </h1>
+    <p>Wystaw Kup Zyskaj</p>
+</div>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary">Moje Konto</button>
+        <button type="button" class="btn btn-primary">Regulamin</button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                Kategorie
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Ruchomości</a>
+                <a class="dropdown-item" href="#">Nieruchomości</a>
+                <a class="dropdown-item" href="#">Władności</a>
+                <a class="dropdown-item" href="#">Bezwładności</a>
+            </div>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="logowanie btn-bd-download" data-toggle="dropdown">Logownaie</button>
+            <div class="dropdown-menu">
+                <a class="zalogu">Zaloguj</a>
+                <a class="nowy" href="">Nowy</a>
+            </div>
+
+        </div>
+
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <span class="border">
+        <div class="col-sm-2">
+            <h3>Kategorie</h3>
+            <p>Ruchomości</p>
+            <p>Nieruchomości</p>
+            <p>Władności</p>
+            <p>Bezwładności</p>
+        </div>
+            </span>
+
+        <div class="col-sm-10" id="center">
+            <h3>Ostatnio Dodane </h3>
+            <p>tutaj wyświetlają się ostatnio dodane ofert</p>
+            <p>miły powiew świeżości</p>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="lib/js/jquery-lib.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#center').load('index.html');
+    })
+</script>
+</body>
+</html>
