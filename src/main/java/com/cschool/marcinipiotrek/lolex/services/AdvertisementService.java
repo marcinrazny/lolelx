@@ -17,26 +17,13 @@ public class AdvertisementService {
     @Autowired
     AdvertisementRepository advertisementRepository;
 
-
-    public List<Advertisement> getAllAdvertisments() {
-        return advertisementRepository.findAll();
-    }
-
-    public Optional<Advertisement> getOneAdvertismentById(Long id) {
-        return advertisementRepository.findById(id);
-    }
-
-    public void addAdvertisment(Advertisement advertisement) {
+    public void addAdvertisement(Advertisement advertisement, User user) {
+        advertisement.setUser(user);
         advertisementRepository.save(advertisement);
     }
 
-    public void updateAdvertisment(Advertisement advertisement) {
-        advertisementRepository.save(advertisement);
+    public List<Advertisement> findUserAdvetisement(User user) {
+        return advertisementRepository.findByUser(user);
     }
-
-    public void deleteAdvertisment(Long id) {
-        advertisementRepository.deleteById(id);
-    }
-
 
 }

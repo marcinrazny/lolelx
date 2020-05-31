@@ -1,48 +1,60 @@
 package com.cschool.marcinipiotrek.lolex.entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String name;
+    @Email
+    @NotEmpty
+    @Column(unique = true)
+    private String email;
+    @NotEmpty
+    private String firstName;
+    @NotEmpty
     private String lastName;
+    @Size(min = 3)
     private String password;
-    private int role;
-    @OneToMany()
-    @JoinTable(inverseJoinColumns = @JoinColumn)
-    private Collection<Advertisement> advertisements = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Advertisement> advertisements;
 
-    public User(String name, String lastName, String password, int role) {
-        this.name = name;
-        this.lastName = lastName;
-        this.password = password;
-        this.role = role;
-    }
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_ROLES", joinColumns = {
+            @JoinColumn(name = "USER_EMAIL", referencedColumnName = "email")}, inverseJoinColumns = {
+            @JoinColumn(name = "ROLE_NAME", referencedColumnName = "name")})
+    private List<Role> roles;
+
 
     public User() {
     }
 
-    public Long getId() {
-        return id;
+    public User(String email, String firstName, String lastName, String password) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getEmail() {
+        return email;
     }
 
-    public String getName() {
-        return name;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -61,29 +73,33 @@ public class User {
         this.password = password;
     }
 
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
-    }
-
-    public Collection<Advertisement> getAdvertisements() {
+    public List<Advertisement> getAdvertisements() {
         return advertisements;
     }
 
-    public void setAdvertisements(Collection<Advertisement> advertisements) {
+    public void setAdvertisements(List<Advertisement> advertisements) {
         this.advertisements = advertisements;
     }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", role=" + role +
+                ", password='" + password + '\'' +
+                ", advertisements=" + advertisements +
+                ", roles=" + roles +
                 '}';
     }
 }
+

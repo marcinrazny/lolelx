@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/for_all}">
+<head>
+    <title>Index Page</title>
+</head>
+<body>
+
+<div layout:fragment="content" class="container mySpace">
+
+    <div class="card">
+        <div class="card card-body">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>publicationDate</th>
+                    <th>expirationDate</th>
+
+                    <td></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="adv:${adverts}">
+                    <td th:text="${adv.getId()}"></td>
+                    <td th:text="${adv.getName()}"></td>
+                    <td th:text="${adv.getCategory()}"></td>
+                    <td th:text="${adv.getPrice()}"></td>
+                    <td th:text="${adv.getPublicationDate()}"></td>
+                    <td th:text="${adv.getExpirationDate()}"></td>
+                    <td></td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
