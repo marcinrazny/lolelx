@@ -14,14 +14,14 @@ import javax.validation.Valid;
 
 @Controller
 public class RegisterController {
-@Autowired
+    @Autowired
     private UserService userService;
 
-@GetMapping("/register")
-    public String getRegister(Model model){
-    model.addAttribute("user", new User());
-    return "views/register";
-}
+    @GetMapping("/register")
+    public String getRegister(Model model) {
+        model.addAttribute("user", new User());
+        return "views/register";
+    }
 
     @PostMapping("/register")
     public String registerUser(@Valid User user, BindingResult bindingResult, Model model) {
@@ -36,9 +36,10 @@ public class RegisterController {
             System.out.println("isExist");
             return "views/register";
 
+
         }
         userService.createRegularUser(user);
-        return "profile";
+        return "redirect:/profile";
 
     }
 

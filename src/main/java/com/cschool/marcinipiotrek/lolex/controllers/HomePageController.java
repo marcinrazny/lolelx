@@ -8,6 +8,7 @@ public class HomePageController {
     @GetMapping("/")
     public String getHomePage() {
         return "views/index";
+
     }
     @GetMapping("/login")
     public String getLoginPage() {

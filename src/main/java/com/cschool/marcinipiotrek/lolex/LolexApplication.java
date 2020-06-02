@@ -34,6 +34,6 @@ public class LolexApplication implements CommandLineRunner {
         User newAdmin = new User("admin@wp.pl", "admin", "janienicki","dddd");
         userService.createAdmin(newAdmin);
 
-
     }
+
 }
