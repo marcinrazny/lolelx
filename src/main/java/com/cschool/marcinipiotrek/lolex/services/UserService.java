@@ -37,6 +37,7 @@ public class UserService {
         userRepository.save(user);
     }
 
+
     public boolean isUserPresent(String email) {
         User u = userRepository.findByEmail(email);
         if (u != null)

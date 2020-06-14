@@ -28,12 +28,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder()).rolePrefix("ROLE_");
     }
 
+//    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+//        authenticationManagerBuilder.jdbcAuthentication().dataSource(dataSource)
+//                .usersByUsernameQuery("select email as principal, password as credentialas, true from user where email =?")
+//                .authoritiesByUsernameQuery("select email as principal , role_name as rolle from user_roles where USER_ID=?")
+//                .passwordEncoder(passwordEncoder()).rolePrefix("ROLE_");
+//    }
+
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity.authorizeRequests()
-                .antMatchers("/h2-console/**","/register", "/index","/", "/about", "/login","/advertisement_list", "/css/**", "/webjars/**","testSite").permitAll()
-                .antMatchers("/profile","/mystore","/advertisement_add").hasAnyRole("USER, ADMIN")
+                .antMatchers("/h2-console/**","/register", "/index","/", "/about", "/login","/advertisement_list", "/css/**", "/webjars/**","/test").permitAll()
+                .antMatchers("/edit_profile/**","/edit/**","/profile","/mystore","/advertisement_add").hasAnyRole("USER, ADMIN")
                 .antMatchers("/user_list").hasAnyRole("ADMIN")
                 .and().formLogin().loginPage("/login").permitAll()
                 .defaultSuccessUrl("/profile").and().logout().logoutSuccessUrl("/login");

@@ -24,6 +24,8 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Advertisement> advertisements;
 
+
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLES", joinColumns = {
             @JoinColumn(name = "USER_EMAIL", referencedColumnName = "email")}, inverseJoinColumns = {
@@ -35,11 +37,15 @@ public class User {
     }
 
     public User(String email, String firstName, String lastName, String password) {
+
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
     }
+
+
+
 
     public String getEmail() {
         return email;

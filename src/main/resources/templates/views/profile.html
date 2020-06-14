@@ -1,54 +1,83 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/for_all}">
 <head>
-    <title>Index Page</title>
+    <title>Profile Page</title>
 </head>
 <body>
 
 <div layout:fragment="content" class="container">
     <div class="row">
-        <div class="col=sm-4">
-            <h2>Mój Profil</h2>
-            <h3 th:text="${user.getFirstName()}"> Imie</h3>
-            <h3 th:text="${user.getLastName()}"> Nazwisko</h3>
-            <h3 th:text="${user.getEmail()}"> Email</h3>
-            <h3 th:text="${user.getRoles()}"> Status</h3>
-        </div>
-
-        <div class="col=sm8-4">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>publicationDate</th>
-                    <th>expirationDate</th>
-
-                    <td></td>
-                </tr>
-                </thead>
+        <div>
+            <table class="table-striped col-md-4">
                 <tbody>
-                <tr th:each="adv:${user.getAdvertisements()}">
-                    <td th:text="${adv.getId()}"></td>
-                    <td th:text="${adv.getName()}"></td>
-                    <td th:text="${adv.getCategory()}"></td>
-                    <td th:text="${adv.getPrice()}"></td>
-                    <td th:text="${adv.getPublicationDate()}"></td>
-                    <td th:text="${adv.getExpirationDate()}"></td>
-                    <td></td>
+                <tr>
+                    <th><h1>Imie</h1></th>
+                    <p1>
+                        <td th:text="${user.getFirstName()}"></td>
+                    </p1>
+                </tr>
+                <tr>
+                    <th><h1>Nazwisko</h1></th>
+                    <td th:text="${user.getLastName()}"></td>
+                </tr>
+                <tr>
+                    <th><h1>Email</h1></th>
+                    <td th:text="${user.getEmail()}"></td>
+                </tr>
+                <tr>
+                    <th><h1>Status</h1></th>
+                    <td th:text="${user.getRoles()}"></td>
                 </tr>
                 </tbody>
-
             </table>
-
         </div>
+        <div class="col-md-6">
+
+            <a th:href="@{/edit_profile/{email}(email=${user.email})}" button type="button" class="btn btn-primary btn-lg">Edycja</button></a>
+            <a th:href="@{/advertisement_add}" button type="button" class="btn btn-primary btn-lg">Dodaj Ogłoszenie</button></a>
+        </div>
+
+
     </div>
 
+    <div class="col-sm8-4">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>publicationDate</th>
+                <th>expirationDate</th>
 
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="adv:${user.getAdvertisements()}">
+                <td th:text="${adv.getId()}"></td>
+                <td th:text="${adv.getName()}"></td>
+                <td th:text="${adv.getCategory()}"></td>
+                <td th:text="${adv.getPrice()}"></td>
+                <td th:text="${adv.getPublicationDate()}"></td>
+                <td th:text="${adv.getExpirationDate()}"></td>
+
+                <td><a th:href="@{edit_advertisement/{id}(id=${adv.id})}"
+                       class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                <td><a
+                        th:href="@{delete_advertisement/{id}(id=${adv.id})}"
+                        class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                <td></td>
+            </tr>
+            </tbody>
+
+        </table>
+
+    </div>
 </div>
 
 

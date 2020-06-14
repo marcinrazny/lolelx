@@ -2,37 +2,50 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/for_all}">
+
+
 <head>
-    <title>Register Form</title>
+    <title>EditProfile Page</title>
 </head>
+
+
 <body>
-
-<div layout:fragment="content" class="container mySpace">
-    <form th:action="@{/addTask}" th:object="${advertisement}" method="post">
+<div layout:fragment="content" class="container">
+    <form th:action="@{/advertisement_add}" th:object="${advertisement}" method="post">
 
         <div class="form-group">
-            <label for="Date" class="form-control-label">Date</label> <input
-                type="date" class="form-control" th:field="*{date}" id="date"/>
-            <div class="text text-danger" th:if="${#fields.hasErrors('date')}"
-                 th:errors="*{date}"></div>
+            <label for="name" class="form-control-label">Nazwa</label> <input
+                type="text" class="form-control" th:field="*{name}" id="name"/>
+            <div class="text text-danger" th:if="${#fields.hasErrors('name')}"
+                 th:errors="*{name}"></div>
         </div>
         <div class="form-group">
-            <label for="startTime" class="form-control-label">StartTime</label>
-            <input type="time" class="form-control" th:field="*{startTime}"
-                   id="startTime"/>
+            <label for="category" class="form-control-label">Kategoria</label>
+            <input type="text" class="form-control" th:field="*{category}"
+                   id="category"/>
             <div class="text text-danger"
-                 th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"></div>
+                 th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></div>
 
         </div>
         <div class="form-group">
-            <label for="stopTime" class="form-control-label">Stop Time</label> <input
-                type="time" class="form-control" th:field="*{stopTime}"
-                id="stopTime"/>
+            <label for="price" class="form-control-label">Cena</label> <input
+                type="text" class="form-control" th:field="*{price}"
+                id="price"/>
             <div class="text text-danger"
-                 th:if="${#fields.hasErrors('stopTime')}" th:errors="*{stopTime}"></div>
+                 th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
         </div>
+
         <div class="form-group">
-            <label for="description" class="form-control-label">Description</label>
+            <label for="expirationDate" class="form-control-label">Koniec Aukcji</label> <input
+                type="text" class="form-control" th:field="*{expirationDate}"
+                id="expirationDate"/>
+            <div class="text text-danger"
+                 th:if="${#fields.hasErrors('expirationDate')}" th:errors="*{expirationDate}"></div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="description" class="form-control-label">Opis</label>
             <textarea class="form-control" th:field="*{description}"
                       id="description">  </textarea>
             <div class="text text-danger"
@@ -40,7 +53,7 @@
 
 
         </div>
-        <input type="submit" value="Submit" class="btn btn-primary"/>
+        <input type="submit" value="Zapisz ogłoszenie" class="btn btn-primary"/>
     </form>
 </div>
 </body>

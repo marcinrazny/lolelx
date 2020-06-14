@@ -8,18 +8,17 @@ import java.util.Date;
 public class Advertisement {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotEmpty
     private String name;
     @NotEmpty
     private String category;
-    @NotEmpty
     private double price;
-    @NotEmpty
-    private Date publicationDate;
-    @NotEmpty
-    private Date expirationDate;
+
+    private String publicationDate;
+
+    private String expirationDate;
     @ManyToOne
     @JoinColumn(name = "USER_EMAIL")
     private User user;
@@ -27,7 +26,7 @@ public class Advertisement {
     private
     String description;
 
-    public Advertisement(String name, String category, double price, Date publicationDate, Date expirationDate, User user) {
+    public Advertisement(String name, String category, double price, String publicationDate, String expirationDate, User user) {
         this.name = name;
         this.category = category;
         this.price = price;
@@ -37,7 +36,7 @@ public class Advertisement {
     }
 
 
-    public Advertisement(String name, String category, double price, Date publicationDate, Date expirationDate) {
+    public Advertisement(String name, String category, double price, String publicationDate, String expirationDate) {
         this.name = name;
         this.category = category;
         this.price = price;
@@ -81,19 +80,19 @@ public class Advertisement {
         this.price = price;
     }
 
-    public Date getPublicationDate() {
+    public String getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(Date publicateDate) {
+    public void setPublicationDate(String publicateDate) {
         this.publicationDate = publicateDate;
     }
 
-    public Date getExpirationDate() {
+    public String getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }
 

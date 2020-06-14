@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,12 +27,6 @@ public class UserController {
     private AdvertisementService advertisementService;
 
 
-    @GetMapping("/users")
-    public String getUserList(Model model, @RequestParam(defaultValue = "") String name) {
-        model.addAttribute("users", userService.findByName(name));
-        return "views/list";
-    }
-
     @GetMapping("/user_list")
     public String getAllUsers(Model model) {
         model.addAttribute("users", userService.findAll());
@@ -44,14 +39,6 @@ public class UserController {
         model.addAttribute("user", userService.findByEmail(email));
         return "views/profile";
     }
-
-    @PostMapping("/edit")
-    public String editUser(Model model, Principal principal) {
-        String email = principal.getName();
-        userService.save(userService.findByEmail(email));
-        return "redirect:/profile";
-    }
-
 
     @PostMapping("/delete")
     public String delete(@Valid User user, BindingResult bindingResult, HttpSession httpSession) {
